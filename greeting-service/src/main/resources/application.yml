@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+resilience4j.bulkhead:
+  instances:
+    holidayClient:
+      # Max amount of time a thread should be blocked
+      # when attempting to enter a saturated bulkhead.
+      maxWaitDuration: 100ms
+      # Max amount of parallel executions allowed by the bulkhead.
+      maxConcurrentCalls: 10
+
+resilience4j.ratelimiter:
+  instances:
+    holidayClient:
+      # The number of permissions available during one limit refresh period.
+      limitForPeriod: 10
+      # After each period, the rate limiter sets its permissions count
+      # back to the limitForPeriod value.
+      limitRefreshPeriod: 1s
+      # The default wait time a thread waits for a permission.
+      timeoutDuration: 500ms
+
+resilience4j.retry:
+  instances:
+    holidayClient:
+      # The maximum number of retry attempt
+      maxRetryAttempts: 3
+      # Initial interval between retry attempts
+      waitDuration: 1s
+      # Use exponential backoff strategy
+      enableExponentialBackoff: true
+      # Multiplier for the exponential backoff
+      # Delay between retry attempts = waitDuration * exponentialBackoffMultiplier
+      exponentialBackoffMultiplier: 2
+
