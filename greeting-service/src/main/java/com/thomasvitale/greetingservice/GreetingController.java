@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class GreetingController {
 
-	private static final String GREETING_SERVER_URL = "http://localhost:8181";
+	private static final String GREETING_SERVER_URL = "http://localhost:8181/holiday-greetings";
 	private final HolidayClient holidayClient;
 
 	@GetMapping
@@ -23,16 +23,16 @@ public class GreetingController {
 
 	@GetMapping("bulkhead")
 	public Mono<String> getGreetingsWithBulkhead() {
-		return holidayClient.getHolidayGreetingWithBulkhead(GREETING_SERVER_URL + "/bulkhead");
+		return holidayClient.getHolidayGreetingsWithBulkhead(GREETING_SERVER_URL);
 	}
 
 	@GetMapping("rate-limiter")
 	public Mono<String> getGreetingsWithRateLimiter() {
-		return holidayClient.getHolidayGreetingWithRateLimiter(GREETING_SERVER_URL + "/rate-limiter");
+		return holidayClient.getHolidayGreetingsWithRateLimiter(GREETING_SERVER_URL);
 	}
 
 	@GetMapping("retry")
 	public Mono<String> getGreetingsWithRetry() {
-		return holidayClient.getHolidayGreetingWithRetries(GREETING_SERVER_URL + "/retries");
+		return holidayClient.getHolidayGreetingsWithRetries(GREETING_SERVER_URL);
 	}
 }

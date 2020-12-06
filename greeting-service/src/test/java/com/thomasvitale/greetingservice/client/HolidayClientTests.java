@@ -43,7 +43,7 @@ class HolidayClientTests {
 		mockWebServer.enqueue(mockResponseWithError);
 		mockWebServer.enqueue(mockResponse);
 
-		Mono<String> actualGreeting = holidayClient.getHolidayGreetingWithRetries(serverUrl);
+		Mono<String> actualGreeting = holidayClient.getHolidayGreetingsWithRetries(serverUrl);
 
 		StepVerifier.create(actualGreeting)
 				.expectNextMatches(g -> g.equals(expectedGreeting))
@@ -57,7 +57,7 @@ class HolidayClientTests {
 		mockWebServer.enqueue(mockResponseWithError);
 		mockWebServer.enqueue(mockResponseWithError);
 
-		Mono<String> actualGreeting = holidayClient.getHolidayGreetingWithRetries(serverUrl);
+		Mono<String> actualGreeting = holidayClient.getHolidayGreetingsWithRetries(serverUrl);
 
 		StepVerifier.create(actualGreeting)
 				.expectNextMatches(g -> g.equals(HolidayClient.DEFAULT_GREETINGS))

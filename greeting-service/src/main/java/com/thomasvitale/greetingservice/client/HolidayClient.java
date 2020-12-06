@@ -26,17 +26,17 @@ public class HolidayClient {
 	}
 
 	@Retry(name = "holidayClient", fallbackMethod = "fallback")
-	public Mono<String> getHolidayGreetingWithRetries(String url) {
+	public Mono<String> getHolidayGreetingsWithRetries(String url) {
 		return getHolidayGreetings(url);
 	}
 
 	@RateLimiter(name = "holidayClient", fallbackMethod = "fallback")
-	public Mono<String> getHolidayGreetingWithRateLimiter(String url) {
+	public Mono<String> getHolidayGreetingsWithRateLimiter(String url) {
 		return getHolidayGreetings(url);
 	}
 
 	@Bulkhead(name = "holidayClient", fallbackMethod = "fallback")
-	public Mono<String> getHolidayGreetingWithBulkhead(String url) {
+	public Mono<String> getHolidayGreetingsWithBulkhead(String url) {
 		return getHolidayGreetings(url);
 	}
 
